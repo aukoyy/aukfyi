@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useLoaderData } from 'remix';
+import { LoaderFunction, useLoaderData } from 'remix';
 import BlogPostPreview from '~/components/blog-post-preview';
 import { getClient } from '~/lib/sanity/getClient';
 import Layout from '~/shared/layout';
 
-export async function loader() {
+export const loader: LoaderFunction = async () => {
 	const posts = await getClient().fetch(
 		`*[_type == "post"]{ 
       _id, 
@@ -26,7 +26,7 @@ export async function loader() {
 	);
 
 	return { posts, categories };
-}
+};
 
 const Blog = () => {
 	let { posts, categories } = useLoaderData();

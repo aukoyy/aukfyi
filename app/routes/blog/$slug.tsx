@@ -1,37 +1,29 @@
-import { useLoaderData } from 'remix';
+import { LoaderFunction, useLoaderData } from 'remix';
 import { getClient } from '~/lib/sanity/getClient';
 import BlogPost from '../../components/blog-post';
 import Layout from '../../shared/layout';
 
-export const loader = async ({ params }: any) => {
-	const slug = params.slug;
-	// console.log(slug);
-
+export const loader: LoaderFunction = async ({ params }) => {
 	const post = await getClient().fetch(
-		`[_type == "post" && slug.current == ${slug}]{ 
+		`*[_type == "post" && slug.current == ${params.slug}][0]{ 
       _id, 
       title, 
-      slug, 
       publishedAt, 
       mainImage,
     }`
 	);
 
-	// console.log(post[0]);
-	// if (!post) throw new Error('Post not found');
-
-	return { slug, post };
+	return { post };
 };
 
 const BlogPostTemplate = () => {
-	let { slug, post } = useLoaderData();
+	let { post } = useLoaderData();
+	console.log(post);
 
 	return (
 		<Layout>
-			<h1 className="text-xl underline">Slug</h1>
-			{slug}
 			<h1 className="text-2xl underline mt-16">Post</h1>
-			{post.title}
+
 			{/* <BlogPost post={post} /> */}
 		</Layout>
 	);
