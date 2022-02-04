@@ -13,6 +13,7 @@ export async function loader() {
       publishedAt, 
       mainImage,
       categories[]->{
+        _id,
         title
       }
     }`
@@ -100,6 +101,7 @@ const Blog = () => {
 										publishedAt={post.publishedAt}
 										slug={post.slug.current}
 										mainImage={post.mainImage}
+										categories={post.categories}
 									/>
 								</div>
 							))}

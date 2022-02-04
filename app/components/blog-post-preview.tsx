@@ -23,10 +23,10 @@ const BlogPostPreview = (props: BlogPostPreviewProps) => {
 						categories.length > 0 &&
 						categories.map((category: any) => (
 							<span
-								key={category._ref}
+								key={category._id}
 								className="bg-white opacity-80 text-sm px-1.5 mx-1 rounded"
 							>
-								{category.title} hey
+								{category.title}
 							</span>
 						))}
 				</div>
