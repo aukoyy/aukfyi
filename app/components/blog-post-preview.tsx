@@ -6,7 +6,7 @@ import { buildImageObj, getBlogUrl } from '../shared/util';
 interface BlogPostPreviewProps {
 	title: string;
 	publishedAt: any;
-	slug: any;
+	slug: string;
 	mainImage?: any;
 	categories?: any;
 	// _rawExcerpt?: any;

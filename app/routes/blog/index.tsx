@@ -12,7 +12,9 @@ export async function loader() {
       slug, 
       publishedAt, 
       mainImage,
-      categories,
+      categories[]->{
+        title
+      }
     }`
 	);
 	const categories = await getClient().fetch(
