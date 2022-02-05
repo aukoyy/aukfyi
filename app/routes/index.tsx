@@ -30,7 +30,7 @@ const Index = () => {
 					<p>I like creating things with web technologies</p>
 
 					<h2 className="text-2xl mt-36">Latest blog posts</h2>
-					<div className="mt-8 flex flex-wrap justify-center lg:justify-between">
+					<div className="mt-8 flex flex-wrap justify-center lg:justify-between gap-8">
 						{posts?.length > 1
 							? posts.map((post: any) => (
 									<div key={post._id}>

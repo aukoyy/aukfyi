@@ -9,7 +9,7 @@ interface NavItemProps {
 const NavItem = (props: NavItemProps) => {
 	const { text: navItem, url } = props;
 	return (
-		<Link to={url} className="mt-4 text-sm">
+		<Link to={url} className="md:mt-0 mt-8 text-2xl text-gray-800">
 			<li>{navItem}</li>
 		</Link>
 	);

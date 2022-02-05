@@ -30,7 +30,7 @@ const Layout = (props: LayoutProps) => {
 			<div className="flex justify-center">
 				<div className="w-5/6 md:w-4/6">
 					<Nav />
-					<main>{children}</main>
+					<main className="mt-32">{children}</main>
 				</div>
 			</div>
 

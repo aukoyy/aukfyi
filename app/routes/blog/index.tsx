@@ -66,7 +66,7 @@ const Blog = () => {
 				</nav>
 				<hr className="mt-2" />
 
-				<div className="mt-16 flex flex-wrap justify-center lg:justify-between">
+				<div className="mt-16 flex flex-wrap justify-center md:justify-between gap-8">
 					{posts &&
 						posts
 							.filter((post: any) => shouldPostRender(post))

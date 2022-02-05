@@ -17,7 +17,7 @@ const BlogPostPreview = (props: BlogPostPreviewProps) => {
 
 	return (
 		<Link to={getBlogUrl(publishedAt, slug)}>
-			<div className="shadow rounded-xl mt-4 md:w-96">
+			<div className="shadow rounded-xl sm:w-96">
 				<div className="absolute p-2 flex flex-wrap gap-1">
 					{categories &&
 						categories.length > 0 &&
