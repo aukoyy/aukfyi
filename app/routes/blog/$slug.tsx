@@ -6,23 +6,6 @@ import { buildImageObj } from '~/shared/util';
 import Layout from '../../shared/layout';
 import { PortableText } from '@portabletext/react';
 
-export const loader: LoaderFunction = async ({ params }) => {
-	// `*[_type == "post" && slug.current == ${params.slug}][0]{
-	const posts = await getClient().fetch(
-		`*[_type == "post"]{ 
-      _id, 
-      title, 
-      slug,
-      publishedAt, 
-      mainImage,
-      body,
-    }`
-	);
-
-	const post = posts.filter((pos: any) => pos.slug.current === params.slug)[0];
-	return { post };
-};
-
 const BlogPostTemplate = () => {
 	let { post } = useLoaderData();
 	const { body, title, mainImage, publishedAt } = post;
@@ -63,3 +46,20 @@ const BlogPostTemplate = () => {
 };
 
 export default BlogPostTemplate;
+
+export const loader: LoaderFunction = async ({ params }) => {
+	// `*[_type == "post" && slug.current == ${params.slug}][0]{
+	const posts = await getClient().fetch(
+		`*[_type == "post"]{ 
+      _id, 
+      title, 
+      slug,
+      publishedAt, 
+      mainImage,
+      body,
+    }`
+	);
+
+	const post = posts.filter((pos: any) => pos.slug.current === params.slug)[0];
+	return { post };
+};

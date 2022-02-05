@@ -4,30 +4,6 @@ import BlogPostPreview from '~/components/blog-post-preview';
 import { getClient } from '~/lib/sanity/getClient';
 import Layout from '~/shared/layout';
 
-export const loader: LoaderFunction = async () => {
-	const posts = await getClient().fetch(
-		`*[_type == "post"]{ 
-      _id, 
-      title, 
-      slug, 
-      publishedAt, 
-      mainImage,
-      categories[]->{
-        _id,
-        title
-      }
-    }`
-	);
-	const categories = await getClient().fetch(
-		`*[_type == "category"]{ 
-      _id, 
-      title,
-    }`
-	);
-
-	return { posts, categories };
-};
-
 const Blog = () => {
 	let { posts, categories } = useLoaderData();
 	const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -112,3 +88,27 @@ const Blog = () => {
 };
 
 export default Blog;
+
+export const loader: LoaderFunction = async () => {
+	const posts = await getClient().fetch(
+		`*[_type == "post"]{ 
+      _id, 
+      title, 
+      slug, 
+      publishedAt, 
+      mainImage,
+      categories[]->{
+        _id,
+        title
+      }
+    }`
+	);
+	const categories = await getClient().fetch(
+		`*[_type == "category"]{ 
+      _id, 
+      title,
+    }`
+	);
+
+	return { posts, categories };
+};
