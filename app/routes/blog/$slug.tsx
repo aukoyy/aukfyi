@@ -1,7 +1,10 @@
+import { differenceInDays, format, formatDistance } from 'date-fns';
 import { LoaderFunction, useLoaderData } from 'remix';
 import { getClient } from '~/lib/sanity/getClient';
-import BlogPost from '../../components/blog-post';
+import imageUrlFor from '~/shared/image-url';
+import { buildImageObj } from '~/shared/util';
 import Layout from '../../shared/layout';
+import { PortableText } from '@portabletext/react';
 
 export const loader: LoaderFunction = async ({ params }) => {
 	// `*[_type == "post" && slug.current == ${params.slug}][0]{
@@ -22,13 +25,39 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 const BlogPostTemplate = () => {
 	let { post } = useLoaderData();
-	console.log(post);
+	const { body, title, mainImage, publishedAt } = post;
 
 	return (
 		<Layout>
-			<h1 className="text-2xl underline mt-16">Post</h1>
+			<article className="md:mt-8">
+				<h1 className="text-4xl mt-12 border-b-4 border-blue-500">{title}</h1>
 
-			<BlogPost post={post} />
+				{publishedAt && (
+					<div className="mt-2 text-gray-300">
+						{differenceInDays(new Date(publishedAt), new Date()) > 3
+							? formatDistance(new Date(publishedAt), new Date())
+							: format(new Date(publishedAt), 'MMMM do, yyyy')}
+					</div>
+				)}
+
+				<div className="mt-16 flex justify-center">
+					{mainImage && mainImage.asset && (
+						<img
+							className="rounded-xl shadow"
+							src={imageUrlFor(buildImageObj(mainImage)).url()!}
+							alt={mainImage.alt}
+						/>
+					)}
+				</div>
+
+				<div className="mt-16 text-gray-700 flex justify-center">
+					{body && (
+						<div className="prose text-xl">
+							<PortableText value={body} />
+						</div>
+					)}
+				</div>
+			</article>
 		</Layout>
 	);
 };
