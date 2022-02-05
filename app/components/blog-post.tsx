@@ -4,7 +4,7 @@ import { buildImageObj } from '../shared/util';
 import PortableText from './portableText';
 
 function BlogPost({ post }: any) {
-	const { _rawBody, title, mainImage, publishedAt } = post;
+	const { body, title, mainImage, publishedAt } = post;
 
 	return (
 		<article className="md:mt-8">
@@ -29,9 +29,9 @@ function BlogPost({ post }: any) {
 			</div>
 
 			<div className="mt-16 text-gray-700 flex justify-center">
-				{_rawBody && (
+				{body && (
 					<div className="prose text-xl">
-						<PortableText blocks={_rawBody} />
+						<PortableText blocks={body} />
 					</div>
 				)}
 			</div>

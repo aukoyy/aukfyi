@@ -4,15 +4,19 @@ import BlogPost from '../../components/blog-post';
 import Layout from '../../shared/layout';
 
 export const loader: LoaderFunction = async ({ params }) => {
-	const post = await getClient().fetch(
-		`*[_type == "post" && slug.current == ${params.slug}][0]{ 
+	// `*[_type == "post" && slug.current == ${params.slug}][0]{
+	const posts = await getClient().fetch(
+		`*[_type == "post"]{ 
       _id, 
       title, 
+      slug,
       publishedAt, 
       mainImage,
+      body,
     }`
 	);
 
+	const post = posts.filter((pos: any) => pos.slug.current === params.slug)[0];
 	return { post };
 };
 
@@ -24,7 +28,7 @@ const BlogPostTemplate = () => {
 		<Layout>
 			<h1 className="text-2xl underline mt-16">Post</h1>
 
-			{/* <BlogPost post={post} /> */}
+			<BlogPost post={post} />
 		</Layout>
 	);
 };
