@@ -1,8 +1,7 @@
 import { differenceInDays, format, formatDistance } from 'date-fns';
 import { LoaderFunction, useLoaderData } from 'remix';
 import { getClient } from '~/lib/sanity/getClient';
-import imageUrlFor from '~/shared/util';
-import { buildImageObj } from '~/shared/util';
+import urlFor from '~/shared/util';
 import Layout from '../../shared/layout';
 import { PortableText } from '@portabletext/react';
 
@@ -10,31 +9,33 @@ import urlBuilder from '@sanity/image-url';
 import { getImageDimensions } from '@sanity/asset-utils';
 
 // Barebones lazy-loaded image component
-const SampleImageComponent = ({ value, isInline }: any) => {
+const ImageComponent = ({ value }: any) => {
 	const { width, height } = getImageDimensions(value);
+	console.log(
+		urlBuilder().image(value).width(800).fit('max').auto('format').url()
+	);
+
 	return (
 		<img
-			src={urlBuilder()
-				.image(value)
-				.width(isInline ? 100 : 800)
-				.fit('max')
-				.auto('format')
-				.url()}
+			src={urlBuilder().image(value).width(800).fit('max').auto('format').url()}
 			alt={value.alt || ' '}
 			loading="lazy"
-			style={{ display: isInline ? 'inline-block' : 'block' }}
+			style={{
+				// Avoid jumping around with aspect-ratio CSS property
+				aspectRatio: width / height,
+			}}
 		/>
 	);
 };
 
 const components = {
 	types: {
-		image: SampleImageComponent,
-		code: ({ node }: any) => (
+		image: ImageComponent,
+		/* code: ({ node }: any) => (
 			<pre className="codeBlock">
 				<code>{node.code}</code>
 			</pre>
-		),
+		), */
 		// Any other custom types you have in your content
 		// Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
 	},
@@ -43,6 +44,8 @@ const components = {
 const BlogPostTemplate = () => {
 	let { post } = useLoaderData();
 	const { body, title, mainImage, publishedAt } = post;
+
+	// console.log('body', body);
 
 	return (
 		<Layout>
@@ -61,7 +64,7 @@ const BlogPostTemplate = () => {
 					{mainImage && mainImage.asset && (
 						<img
 							className="rounded-xl shadow"
-							src={imageUrlFor(buildImageObj(mainImage)).url()!}
+							src={urlFor(mainImage).url()!}
 							alt={mainImage.alt}
 						/>
 					)}

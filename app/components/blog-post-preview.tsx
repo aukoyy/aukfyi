@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { Link } from 'remix';
-import imageUrlFor from '../shared/util';
-import { buildImageObj, getBlogUrl } from '../shared/util';
+import urlFor from '../shared/util';
+import { getBlogUrl } from '../shared/util';
 
 interface BlogPostPreviewProps {
 	title: string;
@@ -33,12 +33,7 @@ const BlogPostPreview = (props: BlogPostPreviewProps) => {
 
 				{mainImage && mainImage.asset && (
 					<img
-						src={
-							imageUrlFor(buildImageObj(mainImage))
-								.width(600)
-								.height(300)
-								.url()!
-						}
+						src={urlFor(mainImage).width(600).height(300).url()!}
 						alt={mainImage.alt}
 						className="rounded-t-xl"
 					/>
