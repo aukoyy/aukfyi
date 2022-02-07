@@ -1,23 +1,8 @@
-import Layout from '~/shared/layout';
-
-import { getClient } from '~/lib/sanity/getClient';
 import { useLoaderData } from 'remix';
+
+import Layout from '~/shared/layout';
+import { getClient } from '~/lib/sanity/getClient';
 import BlogPostPreview from '~/components/blog-post-preview';
-
-// loader() must be async!
-export async function loader() {
-	const posts = await getClient().fetch(
-		`*[_type == "post"]{ 
-      _id, 
-      title, 
-      slug, 
-      publishedAt, 
-      mainImage
-    }`
-	);
-
-	return { posts };
-}
 
 const Index = () => {
 	let { posts } = useLoaderData();
@@ -51,3 +36,17 @@ const Index = () => {
 };
 
 export default Index;
+
+export async function loader() {
+	const posts = await getClient().fetch(
+		`*[_type == "post"]{ 
+      _id, 
+      title, 
+      slug, 
+      publishedAt, 
+      mainImage
+    }`
+	);
+
+	return { posts };
+}

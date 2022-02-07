@@ -22,13 +22,7 @@ const SampleImageComponent = ({ value, isInline }: any) => {
 				.url()}
 			alt={value.alt || ' '}
 			loading="lazy"
-			style={{
-				// Display alongside text if image appears inside a block text span
-				display: isInline ? 'inline-block' : 'block',
-
-				// Avoid jumping around with aspect-ratio CSS property
-				// aspectRatio: width / height,
-			}}
+			style={{ display: isInline ? 'inline-block' : 'block' }}
 		/>
 	);
 };
@@ -36,7 +30,11 @@ const SampleImageComponent = ({ value, isInline }: any) => {
 const components = {
 	types: {
 		image: SampleImageComponent,
-		/* image: ({ value }: any) => <img src={value.imageUrl} />, */
+		code: ({ node }: any) => (
+			<pre className="codeBlock">
+				<code>{node.code}</code>
+			</pre>
+		),
 		// Any other custom types you have in your content
 		// Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
 	},
