@@ -1,4 +1,5 @@
-import { format } from 'date-fns';
+import imageUrlBuilder from '@sanity/image-url';
+import { config } from '../lib/sanity/config';
 
 export function cn(...args: any[]) {
 	return args.filter(Boolean).join(' ');
@@ -18,4 +19,10 @@ export function buildImageObj(source = { asset: {} }) {
 	if (source.hotspot) imageObj.hotspot = source.hotspot;
 
 	return imageObj;
+}
+
+const builder = imageUrlBuilder(config);
+
+export default function imageUrlFor(source: any) {
+	return builder.image(source);
 }

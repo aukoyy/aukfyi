@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { Link } from 'remix';
-import imageUrlFor from '../shared/image-url';
+import imageUrlFor from '../shared/util';
 import { buildImageObj, getBlogUrl } from '../shared/util';
 
 interface BlogPostPreviewProps {
@@ -9,11 +9,11 @@ interface BlogPostPreviewProps {
 	slug: string;
 	mainImage?: any;
 	categories?: any;
-	// _rawExcerpt?: any;
+	excerpt?: any;
 }
 
 const BlogPostPreview = (props: BlogPostPreviewProps) => {
-	const { publishedAt, slug, mainImage, title, categories } = props;
+	const { publishedAt, slug, mainImage, title, categories, excerpt } = props;
 
 	return (
 		<Link to={getBlogUrl(publishedAt, slug)}>
@@ -45,7 +45,9 @@ const BlogPostPreview = (props: BlogPostPreviewProps) => {
 				)}
 				<div className="p-4 mt-2">
 					<h3 className="font-bold">{title}</h3>
-					{/* <p className="text-gray-500">{_rawExcerpt && _rawExcerpt[0].children[0].text}</p> */}
+					<p className="text-gray-500">
+						{excerpt && excerpt[0].children[0].text}
+					</p>
 					<p className="mt-2">{format(new Date(publishedAt), 'PPP')}</p>
 				</div>
 			</div>

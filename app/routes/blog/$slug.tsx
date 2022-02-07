@@ -1,10 +1,46 @@
 import { differenceInDays, format, formatDistance } from 'date-fns';
 import { LoaderFunction, useLoaderData } from 'remix';
 import { getClient } from '~/lib/sanity/getClient';
-import imageUrlFor from '~/shared/image-url';
+import imageUrlFor from '~/shared/util';
 import { buildImageObj } from '~/shared/util';
 import Layout from '../../shared/layout';
 import { PortableText } from '@portabletext/react';
+
+import urlBuilder from '@sanity/image-url';
+import { getImageDimensions } from '@sanity/asset-utils';
+
+// Barebones lazy-loaded image component
+const SampleImageComponent = ({ value, isInline }: any) => {
+	const { width, height } = getImageDimensions(value);
+	return (
+		<img
+			src={urlBuilder()
+				.image(value)
+				.width(isInline ? 100 : 800)
+				.fit('max')
+				.auto('format')
+				.url()}
+			alt={value.alt || ' '}
+			loading="lazy"
+			style={{
+				// Display alongside text if image appears inside a block text span
+				display: isInline ? 'inline-block' : 'block',
+
+				// Avoid jumping around with aspect-ratio CSS property
+				// aspectRatio: width / height,
+			}}
+		/>
+	);
+};
+
+const components = {
+	types: {
+		image: SampleImageComponent,
+		/* image: ({ value }: any) => <img src={value.imageUrl} />, */
+		// Any other custom types you have in your content
+		// Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
+	},
+};
 
 const BlogPostTemplate = () => {
 	let { post } = useLoaderData();
@@ -36,7 +72,7 @@ const BlogPostTemplate = () => {
 				<div className="mt-16 text-gray-700 flex justify-center">
 					{body && (
 						<div className="prose text-xl">
-							<PortableText value={body} />
+							<PortableText value={body} components={components} />
 						</div>
 					)}
 				</div>

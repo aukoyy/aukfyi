@@ -12,16 +12,11 @@ export default {
 			name: 'slug',
 			title: 'Slug',
 			type: 'slug',
+			description: 'This specifies what the url will be for this post',
 			options: {
 				source: 'title',
 				maxLength: 96,
 			},
-		},
-		{
-			name: 'author',
-			title: 'Author',
-			type: 'reference',
-			to: { type: 'author' },
 		},
 		{
 			name: 'mainImage',
@@ -41,6 +36,14 @@ export default {
 			name: 'publishedAt',
 			title: 'Published at',
 			type: 'datetime',
+			description: 'This can be used to schedule post for publishing',
+		},
+		{
+			name: 'excerpt',
+			type: 'excerptPortableText',
+			title: 'Excerpt',
+			description:
+				'This ends up on summary pages, on Google, when people share your post in social media.',
 		},
 		{
 			name: 'body',

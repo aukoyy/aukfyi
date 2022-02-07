@@ -78,6 +78,7 @@ const Blog = () => {
 										slug={post.slug.current}
 										mainImage={post.mainImage}
 										categories={post.categories}
+										excerpt={post.excerpt}
 									/>
 								</div>
 							))}
@@ -94,13 +95,14 @@ export const loader: LoaderFunction = async () => {
 		`*[_type == "post"]{ 
       _id, 
       title, 
+      excerpt,
       slug, 
       publishedAt, 
       mainImage,
       categories[]->{
         _id,
         title
-      }
+      },
     }`
 	);
 	const categories = await getClient().fetch(
