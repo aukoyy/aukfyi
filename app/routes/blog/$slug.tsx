@@ -5,7 +5,6 @@ import urlFor from '~/shared/util';
 import Layout from '../../shared/layout';
 import { PortableText } from '@portabletext/react';
 
-import urlBuilder from '@sanity/image-url';
 import { getImageDimensions } from '@sanity/asset-utils';
 
 // Barebones lazy-loaded image component
