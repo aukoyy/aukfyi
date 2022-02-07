@@ -11,13 +11,11 @@ import { getImageDimensions } from '@sanity/asset-utils';
 // Barebones lazy-loaded image component
 const ImageComponent = ({ value }: any) => {
 	const { width, height } = getImageDimensions(value);
-	console.log(
-		urlBuilder().image(value).width(800).fit('max').auto('format').url()
-	);
+	console.log(urlFor(value).width(800).fit('max').auto('format').url());
 
 	return (
 		<img
-			src={urlBuilder().image(value).width(800).fit('max').auto('format').url()}
+			src={urlFor(value).width(800).fit('max').auto('format').url()}
 			alt={value.alt || ' '}
 			loading="lazy"
 			style={{
