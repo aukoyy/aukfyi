@@ -48,18 +48,21 @@ const Tidbits = () => {
 				</div>
 				<div className="md:w-1/2">
 					<dl>
-						<Tidbit title="Test" tidbit="test tidbit" />
-						<Tidbit title="Test" tidbit="test tidbit" />
-						<Tidbit title="Test" tidbit="test tidbit" />
-						<Tidbit title="Test" tidbit="test tidbit" />
+						{tidbits &&
+							tidbits
+								.filter((tid: any) => tid.category.title === activeCategory)
+								.map((tidbit: any) => {
+									return (
+										<Tidbit
+											key={tidbit._id}
+											title={tidbit.title}
+											tidbit={tidbit.tidbit}
+										/>
+									);
+								})}
 					</dl>
 				</div>
 			</div>
-
-			{tidbits &&
-				tidbits.map((tidbit: any) => {
-					return <div key={tidbit._id}>{tidbit.title}</div>;
-				})}
 		</Layout>
 	);
 };

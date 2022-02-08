@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
+import { PortableText } from '@portabletext/react';
 
 export interface Tidbit {
 	title: string;
@@ -15,7 +16,7 @@ const Tidbit = ({ title, tidbit }: Tidbit) => {
 					onClick={() => setIsOpen(!isOpen)}
 					className="text-lg font-medium py-4 w-full flex justify-between items-center text-left focus:outline-none"
 				>
-					<span>What is the difference between Node and Element?</span>
+					<span>{title}</span>
 					<ChevronDownIcon
 						className={`h-8 w-8 text-gray-600 transition-transform duration-200 ${
 							isOpen ? 'transform rotate-180' : 'transform'
@@ -28,7 +29,7 @@ const Tidbit = ({ title, tidbit }: Tidbit) => {
 					isOpen ? 'in border-b border-inactive' : 'hidden'
 				}`}
 			>
-				<p className="no-margin">Lorem Ipsum</p>
+				<PortableText value={tidbit} />
 			</dd>
 		</>
 	);
