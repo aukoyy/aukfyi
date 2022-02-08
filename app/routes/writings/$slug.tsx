@@ -2,50 +2,14 @@ import { differenceInDays, format, formatDistance } from 'date-fns';
 import { LoaderFunction, useLoaderData } from 'remix';
 import { getClient } from '~/lib/sanity/getClient';
 import urlFor from '~/shared/util';
+import { getImageDimensions } from '@sanity/asset-utils';
 import Layout from '../../shared/layout';
 import { PortableText } from '@portabletext/react';
-
-import urlBuilder from '@sanity/image-url';
-import { getImageDimensions } from '@sanity/asset-utils';
-import { config } from '~/lib/sanity/config';
-
-// Barebones lazy-loaded image component
-const ImageComponent = ({ value }: any) => {
-	const { width, height } = getImageDimensions(value);
-	return (
-		<div className="text-center">
-			<img
-				src={urlFor(value).width(800).fit('max').auto('format').url()}
-				alt={value.alt || ' '}
-				loading="lazy"
-				style={{
-					// Avoid jumping around with aspect-ratio CSS property
-					aspectRatio: width / height,
-				}}
-			/>
-			<p className="italic">{value.caption && value.caption}</p>
-		</div>
-	);
-};
-
-const components = {
-	types: {
-		image: ImageComponent,
-		/* code: ({ node }: any) => (
-			<pre className="codeBlock">
-				<code>{node.code}</code>
-			</pre>
-		), */
-		// Any other custom types you have in your content
-		// Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
-	},
-};
+import { codeComponent, ImageComponent } from '~/shared/blockComponents';
 
 const BlogPostTemplate = () => {
 	let { post } = useLoaderData();
 	const { body, title, mainImage, publishedAt } = post;
-
-	// console.log('body', body);
 
 	return (
 		<Layout>
@@ -73,7 +37,12 @@ const BlogPostTemplate = () => {
 				<div className="mt-16 text-gray-700 flex justify-center">
 					{body && (
 						<div className="prose text-xl">
-							<PortableText value={body} components={components} />
+							<PortableText
+								value={body}
+								components={{
+									types: { image: ImageComponent, code: codeComponent },
+								}}
+							/>
 						</div>
 					)}
 				</div>

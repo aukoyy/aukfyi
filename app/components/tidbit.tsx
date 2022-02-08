@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { ChevronDownIcon, LinkIcon } from '@heroicons/react/solid';
 import { PortableText } from '@portabletext/react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { nightOwl } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { codeComponent } from '~/shared/blockComponents';
 
 export interface Tidbit {
 	title: string;
@@ -10,6 +13,7 @@ export interface Tidbit {
 
 const Tidbit = ({ title, tidbit, sourceURL }: Tidbit) => {
 	const [isOpen, setIsOpen] = useState(false);
+
 	return (
 		<>
 			<dt className={isOpen ? '' : 'border-b border-inactive border-teal-400'}>
@@ -30,7 +34,12 @@ const Tidbit = ({ title, tidbit, sourceURL }: Tidbit) => {
 					isOpen ? 'in border-b border-inactive border-teal-400 pl-4' : 'hidden'
 				}`}
 			>
-				<PortableText value={tidbit} />
+				<PortableText
+					value={tidbit}
+					components={{
+						types: { code: codeComponent },
+					}}
+				/>
 				{sourceURL && (
 					<a href={sourceURL}>
 						<span className="my-8 flex justify-center space-x-4 text-gray-700">

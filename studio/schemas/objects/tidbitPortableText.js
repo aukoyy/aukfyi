@@ -16,5 +16,10 @@ export default {
 				annotations: [],
 			},
 		},
+		{
+			name: 'code',
+			title: 'Code',
+			type: 'code',
+		},
 	],
 };
