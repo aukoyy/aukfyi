@@ -1,7 +1,5 @@
 import urlFor from '~/shared/util';
 
-const image = require('../assets/auk.jpg');
-
 export interface TidbitCategory {
 	title: string;
 	image?: any;
@@ -19,7 +17,7 @@ const TidbitCategory = ({
 		<div className="sm:block p-2 sm:w-1/2">
 			<div
 				className={`cursor-pointer rounded-lg shadow-lg transition-all duration-150 
-      hover:border-blue hover:shadow-md hover:border-teal-900 border 
+      hover:border-blue hover:shadow-md hover:border-teal-700 border 
        ${isActive ? 'bg-teal-500 text-white' : 'bg-white'}
       grid grid-cols-3`}
 				onClick={() => setActive(title)}

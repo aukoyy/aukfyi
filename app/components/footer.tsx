@@ -8,7 +8,7 @@ import {
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 
 const Footer = () => (
-	<footer className="bg-gray-700 h-48 flex justify-center items-center mt-8">
+	<footer className="bg-gray-700 h-32 flex justify-center items-center mt-8">
 		<FooterIcon icon={faGithub} url="https://github.com/aukoyy" />
 		<FooterIcon
 			icon={faLinkedin}

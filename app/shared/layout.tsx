@@ -10,7 +10,7 @@ const Layout = ({ children }: LayoutProps) => {
 	return (
 		<div className="min-h-screen flex flex-col justify-between">
 			<div className="flex justify-center">
-				<div className="w-full max-w-screen-xl mx-8">
+				<div className="w-full max-w-screen-xl px-4">
 					<Nav />
 					<main className="mt-32">{children}</main>
 				</div>

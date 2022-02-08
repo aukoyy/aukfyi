@@ -34,6 +34,14 @@ const Blog = () => {
 		}
 	};
 
+	const filteredCategories = () => {
+		let cats: string[] = [];
+		posts.forEach((pos: any) =>
+			pos.categories.forEach((po: any) => cats.push(po.title))
+		);
+		return categories.filter((category: any) => cats.includes(category.title));
+	};
+
 	return (
 		<Layout>
 			<div className="mt-8 text-gray-500">
@@ -48,8 +56,8 @@ const Blog = () => {
 						>
 							All
 						</li>
-						{categories &&
-							categories.map((category: any) => (
+						{filteredCategories() &&
+							filteredCategories().map((category: any) => (
 								<li
 									onClick={() => toggleCategory(category.title)}
 									key={category._id}

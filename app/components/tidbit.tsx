@@ -1,17 +1,18 @@
 import { useState } from 'react';
-import { ChevronDownIcon } from '@heroicons/react/solid';
+import { ChevronDownIcon, LinkIcon } from '@heroicons/react/solid';
 import { PortableText } from '@portabletext/react';
 
 export interface Tidbit {
 	title: string;
 	tidbit: any;
+	sourceURL?: string;
 }
 
-const Tidbit = ({ title, tidbit }: Tidbit) => {
+const Tidbit = ({ title, tidbit, sourceURL }: Tidbit) => {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<>
-			<dt className={isOpen ? '' : 'border-b border-inactive'}>
+			<dt className={isOpen ? '' : 'border-b border-inactive border-teal-400'}>
 				<button
 					onClick={() => setIsOpen(!isOpen)}
 					className="text-lg font-medium py-4 w-full flex justify-between items-center text-left focus:outline-none"
@@ -25,11 +26,19 @@ const Tidbit = ({ title, tidbit }: Tidbit) => {
 				</button>
 			</dt>
 			<dd
-				className={`text-grey-dark fade pb-4 -mt-4 ${
-					isOpen ? 'in border-b border-inactive' : 'hidden'
+				className={`text-grey-dark fade py-4 -mt-4 ${
+					isOpen ? 'in border-b border-inactive border-teal-400 pl-4' : 'hidden'
 				}`}
 			>
 				<PortableText value={tidbit} />
+				{sourceURL && (
+					<a href={sourceURL}>
+						<span className="my-8 flex justify-center space-x-4 text-gray-700">
+							<p className="italic text-xl">Source</p>
+							<LinkIcon className="h-7 w-7 text-teal-700" />
+						</span>
+					</a>
+				)}
 			</dd>
 		</>
 	);

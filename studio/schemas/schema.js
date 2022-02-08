@@ -12,6 +12,7 @@ import tidbit from './documents/tidbit';
 // OBJECTS
 import blockContent from './objects/blockContent';
 import excerptPortableText from './objects/excerptPortableText';
+import tidbitPortableText from './objects/tidbitPortableText';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -28,5 +29,6 @@ export default createSchema({
 		// { type: 'typename' } in other document schemas
 		blockContent,
 		excerptPortableText,
+		tidbitPortableText,
 	]),
 });

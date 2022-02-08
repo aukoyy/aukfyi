@@ -18,6 +18,11 @@ export default {
 			},
 		},
 		{
+			name: 'sourceURL',
+			title: 'Source URL',
+			type: 'string',
+		},
+		{
 			name: 'category',
 			title: 'Category',
 			type: 'reference',
@@ -26,6 +31,11 @@ export default {
 		{
 			name: 'tidbit',
 			title: 'Tidbit',
+			type: 'tidbitPortableText',
+		},
+		{
+			name: 'longForm',
+			title: 'Long form',
 			type: 'blockContent',
 		},
 	],

@@ -11,19 +11,11 @@ const Tidbits = () => {
 		categories[0].title
 	);
 
-	/* useEffect(() => {
-		console.log(activeCategory);
-	}, [activeCategory]); */
-
-	// find all categories referenced by tidbits.
-	// use this as list of categories in map function
-	const filterCategories = () => {
+	const filteredCategories = () => {
 		let cats: string[] = [];
 		tidbits.forEach((tid: any) => cats.push(tid.category.title));
 		return categories.filter((category: any) => cats.includes(category.title));
 	};
-
-	const tidbitCategories = filterCategories();
 
 	return (
 		<Layout>
@@ -34,8 +26,8 @@ const Tidbits = () => {
 						Things that I have learned along the way
 					</p>
 					<div className="flex flex-wrap items-stretch">
-						{tidbitCategories &&
-							tidbitCategories.map((category: any) => (
+						{filteredCategories() &&
+							filteredCategories().map((category: any) => (
 								<TidbitCategory
 									key={category._id}
 									title={category.title}
@@ -57,6 +49,7 @@ const Tidbits = () => {
 											key={tidbit._id}
 											title={tidbit.title}
 											tidbit={tidbit.tidbit}
+											sourceURL={tidbit.sourceURL}
 										/>
 									);
 								})}
@@ -74,6 +67,7 @@ export const loader: LoaderFunction = async () => {
 		`*[_type == "tidbit"]{ 
       _id, 
       title, 
+      sourceURL,
       tidbit,
       category->{
         _id,
