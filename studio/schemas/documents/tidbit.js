@@ -1,6 +1,6 @@
 export default {
-	name: 'cheatSheet',
-	title: 'Cheat Sheet',
+	name: 'tidbit',
+	title: 'Tidbit',
 	type: 'document',
 	fields: [
 		{
@@ -24,8 +24,8 @@ export default {
 			to: { type: 'category' },
 		},
 		{
-			name: 'learning',
-			title: 'Learning',
+			name: 'tidbit',
+			title: 'Tidbit',
 			type: 'blockContent',
 		},
 	],

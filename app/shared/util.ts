@@ -6,7 +6,7 @@ export function cn(...args: any[]) {
 }
 
 export function getBlogUrl(publishedAt: string, slug: string) {
-	return `/blog/${slug}/`;
+	return `/writings/${slug}/`;
 	// return `/blog/${format(new Date(publishedAt), 'yyyy-MM')}/${slug}/`;
 }
 
