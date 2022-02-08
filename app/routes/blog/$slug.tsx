@@ -5,23 +5,26 @@ import urlFor from '~/shared/util';
 import Layout from '../../shared/layout';
 import { PortableText } from '@portabletext/react';
 
+import urlBuilder from '@sanity/image-url';
 import { getImageDimensions } from '@sanity/asset-utils';
+import { config } from '~/lib/sanity/config';
 
 // Barebones lazy-loaded image component
 const ImageComponent = ({ value }: any) => {
 	const { width, height } = getImageDimensions(value);
-	console.log(urlFor(value).width(800).fit('max').auto('format').url());
-
 	return (
-		<img
-			src={urlFor(value).width(800).fit('max').auto('format').url()}
-			alt={value.alt || ' '}
-			loading="lazy"
-			style={{
-				// Avoid jumping around with aspect-ratio CSS property
-				aspectRatio: width / height,
-			}}
-		/>
+		<div className="text-center">
+			<img
+				src={urlFor(value).width(800).fit('max').auto('format').url()}
+				alt={value.alt || ' '}
+				loading="lazy"
+				style={{
+					// Avoid jumping around with aspect-ratio CSS property
+					aspectRatio: width / height,
+				}}
+			/>
+			<p className="italic">{value.caption && value.caption}</p>
+		</div>
 	);
 };
 
