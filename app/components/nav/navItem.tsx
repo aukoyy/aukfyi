@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'remix';
 
 interface NavItemProps {
@@ -6,11 +5,10 @@ interface NavItemProps {
 	url: string;
 }
 
-const NavItem = (props: NavItemProps) => {
-	const { text: navItem, url } = props;
+const NavItem = ({ text, url }: NavItemProps) => {
 	return (
 		<Link to={url} className="md:mt-0 mt-8 text-2xl text-gray-800">
-			<li>{navItem}</li>
+			<li>{text}</li>
 		</Link>
 	);
 };

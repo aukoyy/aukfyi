@@ -2,11 +2,15 @@ import { useState } from 'react';
 import { cn } from '~/shared/util';
 import NavItem from './navItem';
 import { MenuIcon, XIcon } from '@heroicons/react/solid';
+import { LoaderFunction, useLoaderData } from 'remix';
 
 const Nav = () => {
+	let { params, context, request } = useLoaderData();
+	/* console.log(params);
+	console.log(context);
+	console.log(request); */
 	const [showNav, setShowNav] = useState(false);
 	function handleShowNav() {
-		// document.body.scrollTop = 0;
 		document.documentElement.scrollTop = 0;
 		setShowNav(true);
 	}
@@ -46,3 +50,7 @@ const Nav = () => {
 };
 
 export default Nav;
+
+export const loader: LoaderFunction = async ({ params, context, request }) => {
+	return { params, context, request };
+};
