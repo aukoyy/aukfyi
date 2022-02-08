@@ -16,7 +16,7 @@ const TidbitCategory = ({
 	image,
 }: TidbitCategory) => {
 	return (
-		<div className="sm:block p-2 w-1/2 hidden">
+		<div className="sm:block p-2 sm:w-1/2">
 			<div
 				className={`cursor-pointer rounded-lg shadow-lg transition-all duration-150 
       hover:border-blue hover:shadow-md hover:border-teal-900 border 
