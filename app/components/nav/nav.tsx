@@ -40,9 +40,10 @@ const Nav = () => {
 			>
 				<ul className="flex flex-col md:flex-row md:justify-between md:mb-0 md:h-auto md:mt-16 md:space-x-16">
 					<NavItem text="HOME" url="/" />
-					<NavItem text="BLOG" url="/blog/" />
-					{/* <NavItem text="PROJECTS" url="/projects/" /> */}
-					{/* <NavItem text="CHEET SHEET (today I learned)" url="/cheat-sheet/" /> */}
+					<NavItem text="WRITINGS" url="/writings/" />
+					<NavItem text="TIDBITS" url="/tidbits/" />
+					<NavItem text="CODE" url="/code/" />
+					<NavItem text="PHOTOS" url="/photos/" />
 				</ul>
 				{showNav}
 			</nav>
