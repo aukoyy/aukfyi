@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDownIcon, LinkIcon } from '@heroicons/react/solid';
+import { ChevronDownIcon, ExternalLinkIcon } from '@heroicons/react/solid';
 import { PortableText } from '@portabletext/react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { nightOwl } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
@@ -41,10 +41,10 @@ const Tidbit = ({ title, tidbit, sourceURL }: Tidbit) => {
 					}}
 				/>
 				{sourceURL && (
-					<a href={sourceURL}>
+					<a href={sourceURL} target="_blank">
 						<span className="my-8 flex justify-center space-x-4 text-gray-700">
 							<p className="italic text-xl">Source</p>
-							<LinkIcon className="h-7 w-7 text-teal-700" />
+							<ExternalLinkIcon className="h-7 w-7 text-teal-700" />
 						</span>
 					</a>
 				)}
