@@ -7,9 +7,6 @@ import Layout from '~/shared/layout';
 
 const Tidbits = () => {
 	let { tidbits, categories } = useLoaderData();
-	const [activeCategory, setActiveCategory] = useState<string>(
-		categories[0].title
-	);
 
 	const filteredCategories = () => {
 		let cats: string[] = [];
@@ -17,10 +14,16 @@ const Tidbits = () => {
 		return categories.filter((category: any) => cats.includes(category.title));
 	};
 
+	const [activeCategory, setActiveCategory] = useState<string>(
+		filteredCategories()[0].title
+	);
+
+	console.log(activeCategory);
+
 	return (
 		<Layout>
-			<div className="md:flex gap-16">
-				<div className="md:w-1/2">
+			<div className="lg:flex gap-16">
+				<div className="lg:w-1/2">
 					<h1 className="text-4xl bold">Tidbits of knowledge</h1>
 					<p className="semibold text-lg my-4">
 						Things that I have learned along the way
@@ -38,7 +41,7 @@ const Tidbits = () => {
 							))}
 					</div>
 				</div>
-				<div className="md:w-1/2">
+				<div className="lg:w-1/2">
 					<dl>
 						{tidbits &&
 							tidbits
