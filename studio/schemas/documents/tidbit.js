@@ -33,10 +33,5 @@ export default {
 			title: 'Tidbit',
 			type: 'tidbitPortableText',
 		},
-		{
-			name: 'longForm',
-			title: 'Long form',
-			type: 'blockContent',
-		},
 	],
 };

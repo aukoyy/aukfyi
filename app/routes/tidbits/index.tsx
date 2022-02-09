@@ -41,7 +41,7 @@ const Tidbits = () => {
 							))}
 					</div>
 				</div>
-				<div className="lg:w-1/2">
+				<div className="lg:w-1/2 mt-16 lg:mt-0">
 					<dl>
 						{tidbits &&
 							tidbits

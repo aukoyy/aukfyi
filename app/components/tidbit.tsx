@@ -3,7 +3,7 @@ import { ChevronDownIcon, ExternalLinkIcon } from '@heroicons/react/solid';
 import { PortableText } from '@portabletext/react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { nightOwl } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
-import { codeComponent } from '~/shared/blockComponents';
+import { codeComponent, ImageComponent } from '~/shared/blockComponents';
 
 export interface Tidbit {
 	title: string;
@@ -37,7 +37,7 @@ const Tidbit = ({ title, tidbit, sourceURL }: Tidbit) => {
 				<PortableText
 					value={tidbit}
 					components={{
-						types: { code: codeComponent },
+						types: { code: codeComponent, image: ImageComponent },
 					}}
 				/>
 				{sourceURL && (
