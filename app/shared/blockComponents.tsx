@@ -20,7 +20,7 @@ export const codeComponent = ({ value }: any) => (
 export const ImageComponent = ({ value }: any) => {
 	const { width, height } = getImageDimensions(value);
 	return (
-		<div className="text-center">
+		<div className="text-center my-8">
 			<img
 				src={urlFor(value).width(800).fit('max').auto('format').url()}
 				alt={value.alt || ' '}
