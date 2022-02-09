@@ -30,7 +30,7 @@ const Tidbit = ({ title, tidbit, sourceURL }: Tidbit) => {
 				</button>
 			</dt>
 			<dd
-				className={`text-grey-dark fade py-4 -mt-4 ${
+				className={`prose text-grey-dark fade py-4 -mt-4 ${
 					isOpen ? 'in border-b border-inactive border-teal-400 pl-4' : 'hidden'
 				}`}
 			>
@@ -42,7 +42,7 @@ const Tidbit = ({ title, tidbit, sourceURL }: Tidbit) => {
 				/>
 				{sourceURL && (
 					<a href={sourceURL} target="_blank">
-						<span className="my-8 flex justify-center space-x-4 text-gray-700">
+						<span className="my-8 flex justify-center items-center space-x-4 text-gray-700">
 							<p className="italic text-xl">Source</p>
 							<ExternalLinkIcon className="h-7 w-7 text-teal-700" />
 						</span>

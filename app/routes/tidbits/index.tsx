@@ -18,8 +18,6 @@ const Tidbits = () => {
 		filteredCategories()[0].title
 	);
 
-	console.log(activeCategory);
-
 	return (
 		<Layout>
 			<div className="lg:flex gap-16">

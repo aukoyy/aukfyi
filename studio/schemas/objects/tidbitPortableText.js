@@ -21,7 +21,20 @@ export default {
 					{ title: 'Emphasis', value: 'em' },
 					{ title: 'Code', value: 'code' },
 				],
-				annotations: [],
+				annotations: [
+					{
+						title: 'URL',
+						name: 'link',
+						type: 'object',
+						fields: [
+							{
+								title: 'URL',
+								name: 'href',
+								type: 'url',
+							},
+						],
+					},
+				],
 			},
 		},
 		{
