@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { LoaderFunction, useLoaderData } from 'remix';
+import { json, LoaderFunction, useLoaderData } from 'remix';
 import BlogPostPreview from '~/components/blog-post-preview';
 import { getClient } from '~/lib/sanity/getClient';
 import Layout from '~/shared/layout';
@@ -99,7 +99,7 @@ const Blog = () => {
 export default Blog;
 
 export const loader: LoaderFunction = async () => {
-	const posts = await getClient().fetch(
+	const posts = getClient().fetch(
 		`*[_type == "post"]{ 
       _id, 
       title, 
@@ -113,12 +113,19 @@ export const loader: LoaderFunction = async () => {
       },
     }`
 	);
-	const categories = await getClient().fetch(
+	const categories = getClient().fetch(
 		`*[_type == "category"]{ 
       _id, 
       title,
     }`
 	);
 
-	return { posts, categories };
+	return json(
+		{ posts: await posts, categories: await categories },
+		{
+			headers: {
+				'Cache-control': 'max-age=86400',
+			},
+		}
+	);
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { LoaderFunction, useLoaderData } from 'remix';
+import { json, LoaderFunction, useLoaderData } from 'remix';
 import Tidbit from '~/components/tidbit';
 import TidbitCategory from '~/components/tidbitCategory';
 import { getClient } from '~/lib/sanity/getClient';
@@ -64,7 +64,7 @@ const Tidbits = () => {
 export default Tidbits;
 
 export const loader: LoaderFunction = async () => {
-	const tidbits = await getClient().fetch(
+	const tidbits = getClient().fetch(
 		`*[_type == "tidbit"]{ 
       _id, 
       title, 
@@ -76,7 +76,7 @@ export const loader: LoaderFunction = async () => {
       }
     }`
 	);
-	const categories = await getClient().fetch(
+	const categories = getClient().fetch(
 		`*[_type == "category"]{ 
       _id, 
       title,
@@ -84,5 +84,12 @@ export const loader: LoaderFunction = async () => {
     }`
 	);
 
-	return { tidbits, categories };
+	return json(
+		{ tidbits: await tidbits, categories: await categories },
+		{
+			headers: {
+				'Cache-control': 'max-age=86400',
+			},
+		}
+	);
 };
