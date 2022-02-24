@@ -1,4 +1,4 @@
-import { useLoaderData } from 'remix';
+import { json, useLoaderData } from 'remix';
 
 import Layout from '~/shared/layout';
 import { getClient } from '~/lib/sanity/getClient';
@@ -66,5 +66,12 @@ export async function loader() {
     }`
 	);
 
-	return { posts };
+	return json(
+		{ posts },
+		{
+			headers: {
+				'Cache-control': 'max-age=86400',
+			},
+		}
+	);
 }
