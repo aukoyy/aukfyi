@@ -10,10 +10,7 @@ import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 const Footer = () => (
 	<footer className="bg-gray-700 h-32 flex justify-center items-center mt-8">
 		<FooterIcon icon={faGithub} url="https://github.com/aukoyy" />
-		<FooterIcon
-			icon={faLinkedin}
-			url="https://www.linkedin.com/in/%C3%B8yvind-aukner-a51659183/"
-		/>
+		<FooterIcon icon={faLinkedin} url="https://www.linkedin.com/in/aukoyy/" />
 		<FooterIcon icon={faInstagram} url="https://www.instagram.com/aukoyy/" />
 		<FooterIcon icon={faTwitter} url="https://twitter.com/aukoyy" />
 		{/* <FooterIcon icon={faGraduationCap} url="" /> */}
