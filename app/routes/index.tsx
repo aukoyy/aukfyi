@@ -4,7 +4,7 @@ import Layout from '~/shared/layout';
 import { getClient } from '~/lib/sanity/getClient';
 import BlogPostPreview from '~/components/blog-post-preview';
 
-const auk = require('../assets/auk.jpg');
+/* const auk = require('../assets/auk.jpg'); */
 
 const Index = () => {
 	let { posts } = useLoaderData();
